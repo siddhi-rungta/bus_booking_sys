@@ -91,9 +91,10 @@ session_start();
         <th scope="col">From</th>
         <th scope="col">TO</th>
         <th scope="col">Bus Type</th>
+        <th scope="col">Schedule Date</th>
         <th scope="col">Departure time</th>
         <th scope="col">Price</th>
-        <th scope="col">Action</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -106,6 +107,7 @@ session_start();
         <td><?php echo htmlspecialchars($row['starting_location']); ?></td>
         <td><?php echo htmlspecialchars($row['destination']); ?></td>
         <td><?php echo htmlspecialchars($row['bus_type']); ?></td>
+        <td><?php echo htmlspecialchars($row['Schedule_date']); ?></td>
         <td><?php echo htmlspecialchars($row['departure_time']); ?></td>
         <td><?php echo htmlspecialchars($row['fare_amount']); ?></td>
         <td><a href="booking.html"><button type="button" class="btn btn-danger">BOOK</button></a></td>

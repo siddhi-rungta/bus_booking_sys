@@ -25,7 +25,7 @@ try {
     // $stmt_operator->bind_param("sss", $starting_location, $destination, $Schedule_date);
     // $stmt_operator->execute();
 
-    $sql = "SELECT bus_number,starting_location,destination,bus_type, departure_time, fare_amount FROM bus LEFT OUTER JOIN route ON bus.bus_id=route.bus_id WHERE starting_location='$starting_location' OR destination='$destination' OR Schedule_date='$Schedule_date'";
+    $sql = "SELECT bus_number,starting_location,Schedule_date, destination,bus_type, departure_time, fare_amount FROM bus LEFT OUTER JOIN route ON bus.bus_id=route.bus_id WHERE starting_location='$starting_location' OR destination='$destination' OR Schedule_date='$Schedule_date'";
     $result = $conn->query($sql);
     // $result = $stmt_operator->get_result();
 
