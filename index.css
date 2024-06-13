@@ -1,0 +1,35 @@
+.login{
+  background-color: rgb(32, 113, 171);
+  color: white;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 2px;
+  margin-left: 10px;
+  cursor: pointer;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.login:hover{
+  opacity: 0.8;
+}
+.login:active{
+  opacity: 0.5;
+}
+.submit{
+      border-color: rgb(32, 113, 171);
+      border: none;
+      padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 2px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.submit:hover{
+  background-color: rgb(32, 113, 171);
+}

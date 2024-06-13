@@ -1,0 +1,94 @@
+
+<html>
+  <head>
+    <title>SignUp Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">BusTech</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="booking.html">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+        
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              LOGIN
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="signup">
+                      <form action="login.php" method="post">
+                          <label for="username">User Name:</label><br>
+                          <input class="sign" type="text" id="username" name="username" required><br>
+                          <label for="password">Password:</label><br>
+                          <input class="sign" type="text" id="password" name="password" required><br>
+                         <input class="sign" type="submit" id="sub" value="LOGIN"></a>
+                    </form>
+            
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <p>Not a member? <a href="signup.html">SignUp</a></p>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+         
+          
+        </div>
+      </div>
+   
+      
+    </nav>
+    <center>
+    <h2>SignUp form</h2>
+    <div class="signup" style="width: 500px;">
+        <form action="insert.php" method="post">
+          
+            <label for="FullName">Full name:</label><br>
+            <input class="sign" type="text" id="FullName" name="FullName" required><br>
+            
+            <label for="username">User Name:</label><br>
+            <input class="sign" type="text" id="username" name="username" required><br>
+            <label for="Address">Address:</label><br>
+            <input class="sign" type="text" id="Address" name="Address" required><br>
+            <label for="Contact">Mobile no.:</label><br>
+            <input class="sign" type="text" id="Contact" name="Contact" required><br>
+            <label for="Email">Email:</label><br>
+            <input  class="sign" type="text" id="Email" name="Email" required><br>
+            <label for="Password">Password:</label><br>
+            <input class="sign" type="text" id="Password" name="Password" required><br>
+            <label for="ConfirmPassword"> Confirm Password:</label><br>
+            <input class="sign" type="text" id="ConfirmPassword" name="ConfirmPassword" required><br>
+            <input class="sign" type="submit" id="sub" value="Sign up">
+            
+        </form>
+     
+        </div>
+    </center>
+    </body></html>
