@@ -52,7 +52,12 @@ try {
     $stmt_route->execute();
 
     $conn->commit();
-    echo "New records created successfully";
+    echo "<script>
+            alert('New records created successfully');
+            window.location.href = 'admin.html';
+          </script>";
+
+   
 
 } catch (Exception $e) {
  
