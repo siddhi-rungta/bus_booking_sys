@@ -1,0 +1,61 @@
+
+<html>
+  <head>
+    <title> Add Operator details</title>
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">BusTech</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="booking.html">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+        
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary">
+            <A href="admin.html" style="text-decoration: none; color: white;">Admin</A></button>
+            </button>
+       
+         
+          
+        </div>
+      </div>
+   
+      
+    </nav>
+    <center>
+    <h2>Add Operator Details</h2>
+    <div class="signup">
+        <form action="operator.php" method="post">
+          
+            <label for="operator_id">Operator ID:</label><br>
+            <input type="text" id="operator_id" name="operator_id" required><br>
+            
+            <label for="operator_name">Operator Name:</label><br>
+            <input  type="text" id="operator_name" name="operator_name" required><br>
+            <label for="LicenseNumber"> License Number:</label><br>
+            <input  type="text" id="LicenseNumber" name="LicenseNumber" required><br>
+            <label for="contact">contact:</label><br>
+            <input  type="text" id="contact" name="contact" required><br>
+            
+            
+            <input  type="submit" id="sub" value="Add">
+        </form>
+     
+        </div>
+      </center>
+    </body>

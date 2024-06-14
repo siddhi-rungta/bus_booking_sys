@@ -20,22 +20,20 @@ try {
   $contact = $_POST['contact'];
   $starting_location = $_POST['starting_location'];
   $destination = $_POST['destination'];
-  $departure_time = $_POST['departure_time'];
-  $schedule_date = $_POST['schedule_date'];
+  $date_of_travel = $_POST['date_of_travel'];
   $bus_number = $_POST['bus_number'];
   $bus_id = $_POST['bus_id'];
- 
-  $date_of_booking = $_POST['date_of_booking'];
+  $number_of_seats = $_POST['Number_of_seats'];
+  $selected_seats = $_POST['selected_seats']; // New field
 
-  $sql_operator = "INSERT INTO booking (fullname, contact, starting_location, destination, departure_time, schedule_date, bus_number, bus_id) VALUES (?, ?,?,?,?,?,?,?)";
+  $sql_operator = "INSERT INTO booking (fullname, contact, starting_location, destination, date_of_travel, bus_number, bus_id, number_of_seats, selected_seats) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
   $stmt_operator = $conn->prepare($sql_operator);
-  $stmt_operator->bind_param("isss", $fullname, $contact, $starting_location, $destination, $departure_time, $schedule_date, $bus_number, $bus_ids);
+  $stmt_operator->bind_param("ssssssiss", $fullname, $contact, $starting_location, $destination, $date_of_travel, $bus_number, $bus_id, $number_of_seats, $selected_seats);
   $stmt_operator->execute();
   $conn->commit();
     echo "New records created successfully";
 
 } catch (Exception $e) {
- 
     $conn->rollback();
     echo "Failed to insert data: " . $e->getMessage();
 }
