@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($username === 'admin') {
             header("Location: admin.html");
         } else {
-            header("Location: index.php");
+            header("Location: index.html");
         }
     } else {
         echo "Invalid username or password";

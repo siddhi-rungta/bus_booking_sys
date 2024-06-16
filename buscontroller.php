@@ -45,6 +45,6 @@ try {
 
 $conn->close();
 
-header("Location: busdetails.php");
+header("Location: display_busdetails.php");
 exit;
 ?>

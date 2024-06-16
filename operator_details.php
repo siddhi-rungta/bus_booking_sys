@@ -31,7 +31,7 @@ try {
     $conn->commit();
     echo "<script>
             alert('New records created successfully');
-            window.location.href = 'operator.html';
+            window.location.href = 'operatordetails.html';
           </script>";
 
 

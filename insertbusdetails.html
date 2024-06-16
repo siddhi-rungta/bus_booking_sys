@@ -41,13 +41,12 @@
                 <label for="seat_capacity">Seat Capacity:</label><br>
                 <input type="text" id="seat_capacity" name="seat_capacity" required><br>
                 
-                <label for="operator_id">Operator ID:</label><br>
-                <select id="operator_id" name="operator_id" required onchange="fetchOperatorName()">
+                <label for="operator_id">Operator Name:</label><br>
+                <select id="operator_id" name="operator_id">
                     <option value="">Choose...</option>
-                </select><br>
+                </select><br><br>
                 
-                <label for="operator_name">Operator Name:</label><br>
-                <input type="text" id="operator_name" name="operator_name" readonly><br>
+               
                 
                 <input type="submit" id="sub" value="Add">
             </form>
@@ -59,31 +58,20 @@
         });
 
         function fetchOperators() {
-            $.ajax({
-                url: 'fetch_operators.php',
-                type: 'GET',
-                success: function(response) {
-                    const operators = JSON.parse(response);
-                    operators.forEach(function(operator) {
-                        $('#operator_id').append(new Option(operator.operator_id, operator.operator_id));
-                    });
-                }
+    $.ajax({
+        url: 'fetch_operators.php',
+        type: 'GET',
+        success: function(response) {
+            const operators = JSON.parse(response);
+            operators.forEach(function(operator) {
+                $('#operator_id').append(new Option(operator.operator_name, operator.operator_id));
             });
         }
+    });
+}
 
-        function fetchOperatorName() {
-            const operatorId = $('#operator_id').val();
-            if (operatorId) {
-                $.ajax({
-                    url: 'fetch_operator_name.php',
-                    type: 'POST',
-                    data: { operator_id: operatorId },
-                    success: function(response) {
-                        $('#operator_name').val(response);
-                    }
-                });
-            }
-        }
+
+
     </script>
 </body>
 </html>
