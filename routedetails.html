@@ -1,81 +1,124 @@
-
+<!DOCTYPE html>
 <html>
-  <head>
-    <title> Add Route details</title>
+<head>
+    <title>Add Route Details</title>
     <link rel="stylesheet" type="text/css" href="admin.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
-  </head>
-  <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">BusTech</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-primary">
-            <A href="admin.html" style="text-decoration: none; color: white;">Admin</A></button>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand" href="index.html">BusTech</a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="booking.html">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary">
+                    <a href="admin.html" style="text-decoration: none; color: white;">Admin</a></button>
+                </div>
+            </div>
         </div>
-      </div>  
     </nav>
     <center>
-    <h2>Add Route Details</h2>
-    <div class="signup">
-        <form action="admin.php" method="post">
-          
-            <label for="bus_id">Bus ID:</label><br>
-            <input type="text" id="bus_id" name="bus_id" required><br>
-            <label for="operator_id">Operator ID:</label><br>
-            <input   type="text" id="operator_id" name="operator_id" required><br>
-            <label for="route_id">Route ID:</label><br>
-            <input  type="text" id="route_id" name="route_id" required><br> 
-            <label for="starting_location">Starting Location:</label><br>
-            <select id="starting_location" name="starting_location" required>
-              <option selected>Choose...</option>
-              <option value="kathmandu">Kathmandu</option>
-              <option value="pokhara">Pokhara</option>
-              <option value="birgunj">Birgunj</option>
-              <option value="Butwal">Butwal</option>
-              <option value="Hetauda">Hetauda</option>
-              <option value="Jhapa">Jhapa</option>
-              <option value="Janakpur">Janakpur</option>
-              <option value="Biratnagar">Biratnagar</option></select><br>
-              <label for="destination">Destination:</label><br>
-              <select id="destination" name="destination" required>
-                <option selected>Choose...</option>
-                <option value="kathmandu">Kathmandu</option>
-                <option value="pokhara">Pokhara</option>
-                <option value="birgunj">Birgunj</option>
-                <option value="Butwal">Butwal</option>
-                <option value="Hetauda">Hetauda</option>
-                <option value="Jhapa">Jhapa</option>
-                <option value="Janakpur">Janakpur</option>
-                <option value="Biratnagar">Biratnagar</option><br></select>
-            <label for="departure_time">Departure Time:</label><br>
-            <input  type="time" id="departure_time" name="departure_time" required><br>
-            <label for="schedule_date">Schedule Date:</label><br>
-            <input  type="date" id="schedule_date" name="schedule_date" required><br>
-            <label for="fare_amount">Fare Amount:</label><br>
-            <input  type="text" id="fare_amount" name="fare_amount" required><br>
-            
-            <input  type="submit" id="sub" value="Add">
-        </form>
-     
+        <h2>Add Route Details</h2>
+        <div class="signup">
+            <form action="admin.php" method="post">
+                <label for="bus_id">Bus ID:</label><br>
+                <select id="bus_id" name="bus_id" required onchange="fetchBusAndOperatorDetails()">
+                    <option value="">Choose...</option>
+                </select><br>
+                <label for="bus_number">Bus Number:</label><br>
+                <input type="text" id="bus_number" name="bus_number" readonly><br>
+                <label for="bus_type">Bus Type:</label><br>
+                <input type="text" id="bus_type" name="bus_type" readonly><br>
+                <label for="operator_id">Operator ID:</label><br>
+                <input type="text" id="operator_id" name="operator_id" readonly><br>
+                <label for="operator_name">Operator Name:</label><br>
+                <input type="text" id="operator_name" name="operator_name" readonly><br>
+                <label for="route_id">Route ID:</label><br>
+                <input type="text" id="route_id" name="route_id" required><br>
+                <label for="starting_location">Starting Location:</label><br>
+                <select id="starting_location" name="starting_location" required>
+                    <option selected>Choose...</option>
+                    <option value="kathmandu">Kathmandu</option>
+                    <option value="pokhara">Pokhara</option>
+                    <option value="birgunj">Birgunj</option>
+                    <option value="Butwal">Butwal</option>
+                    <option value="Hetauda">Hetauda</option>
+                    <option value="Jhapa">Jhapa</option>
+                    <option value="Janakpur">Janakpur</option>
+                    <option value="Biratnagar">Biratnagar</option>
+                </select><br>
+                <label for="destination">Destination:</label><br>
+                <select id="destination" name="destination" required>
+                    <option selected>Choose...</option>
+                    <option value="kathmandu">Kathmandu</option>
+                    <option value="pokhara">Pokhara</option>
+                    <option value="birgunj">Birgunj</option>
+                    <option value="Butwal">Butwal</option>
+                    <option value="Hetauda">Hetauda</option>
+                    <option value="Jhapa">Jhapa</option>
+                    <option value="Janakpur">Janakpur</option>
+                    <option value="Biratnagar">Biratnagar</option>
+                </select><br>
+                <label for="departure_time">Departure Time:</label><br>
+                <input type="time" id="departure_time" name="departure_time" required><br>
+                <label for="schedule_date">Schedule Date:</label><br>
+                <input type="date" id="schedule_date" name="schedule_date" required><br>
+                <label for="fare_amount">Fare Amount:</label><br>
+                <input type="text" id="fare_amount" name="fare_amount" required><br>
+                <input type="submit" id="sub" value="Add">
+            </form>
         </div>
-      </center> 
-      
-    </body>
-    </html>
+    </center>
+    <script>
+        $(document).ready(function() {
+            fetchBuses();
+        });
+
+        function fetchBuses() {
+            $.ajax({
+                url: 'fetch_buses.php',
+                type: 'GET',
+                success: function(response) {
+                    const buses = JSON.parse(response);
+                    buses.forEach(function(bus) {
+                        $('#bus_id').append(new Option(bus.bus_id, bus.bus_id));
+                    });
+                }
+            });
+        }
+
+        function fetchBusAndOperatorDetails() {
+            const busId = $('#bus_id').val();
+            if (busId) {
+                $.ajax({
+                    url: 'fetch_bus_and_operator_details.php',
+                    type: 'POST',
+                    data: { bus_id: busId },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        $('#bus_number').val(data.bus_number);
+                        $('#bus_type').val(data.bus_type);
+                        $('#operator_id').val(data.operator_id);
+                        $('#operator_name').val(data.operator_name);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

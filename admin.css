@@ -9,7 +9,7 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 input[type=submit] {
-  background-color: #9a618c;
+  background-color: #447898;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -17,7 +17,7 @@ input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: #b8539f;
+  background-color: #425f71;
 }
 .signup {
   border-radius: 5px;

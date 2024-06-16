@@ -7,7 +7,6 @@ $dbname = "bus_booking_sys";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -16,11 +15,11 @@ if ($conn->connect_error) {
 $conn->begin_transaction();
 
 try {
-    // Get operator_id from operator table
+    // Get operator_id from POST request
     $operator_id = $_POST['operator_id'];
 
     // Check if operator_id exists
-    $sql_check_operator = "SELECT operator_name, LicenseNumber, contact FROM operator WHERE operator_id = ?";
+    $sql_check_operator = "SELECT operator_name FROM operator WHERE operator_id = ?";
     $stmt_check_operator = $conn->prepare($sql_check_operator);
     $stmt_check_operator->bind_param("i", $operator_id);
     $stmt_check_operator->execute();
@@ -28,7 +27,7 @@ try {
 
     if ($stmt_check_operator->num_rows > 0) {
         // Operator exists, fetch details
-        $stmt_check_operator->bind_result($operator_name, $LicenseNumber, $contact);
+        $stmt_check_operator->bind_result($operator_name);
         $stmt_check_operator->fetch();
 
         // Insert into bus table
@@ -42,6 +41,7 @@ try {
         $stmt_bus->bind_param("issii", $bus_id, $bus_number, $bus_type, $seat_capacity, $operator_id);
         $stmt_bus->execute();
 
+        // Commit transaction
         $conn->commit();
         echo "<script>
                 alert('New bus record created successfully for Operator: $operator_name');
@@ -63,4 +63,3 @@ try {
 
 $conn->close();
 ?>
-

@@ -1,63 +1,89 @@
-
+<!DOCTYPE html>
 <html>
-  <head>
-    <title> Add Bus details</title>
+<head>
+    <title>Add Bus Details</title>
     <link rel="stylesheet" type="text/css" href="admin.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
-  </head>
-  <body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">BusTech</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="booking.html">Booking</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-primary">
-            <A href="admin.html" style="text-decoration: none; color: white;">Admin</A></button>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-       
-          
-         
-          
+            <a class="navbar-brand" href="index.html">BusTech</a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary"><a href="admin.html" style="text-decoration: none; color: white;">Admin</a></button>
+                </div>
+            </div>
         </div>
-      </div>
-   
-      
     </nav>
     <center>
-    <h2>Add Bus Details</h2>
-    <div class="signup">
-        <form action="insertbusdetails.php" method="post">
-          
-            <label for="bus_id">Bus ID:</label><br>
-            <input type="text" id="bus_id" name="bus_id" required><br>
-            
-            <label for="bus_number">Bus Number:</label><br>
-            <input  type="text" id="bus_number" name="bus_number" required><br>
-            <label for="bus_type">Bus type:</label><br>
-            <input type="text" id="bus_type" name="bus_type" required><br>
-            <label for="seat_capacity">seat capacity:</label><br>
-            <input  type="text" id="seat_capacity" name="seat_capacity" required><br>
-            <label for="operator_id">Operator ID:</label><br>
-            <input   type="text" id="operator_id" name="operator_id" required><br>
-            
-            <input  type="submit" id="sub" value="Add">
-        </form>
-     
+        <h2>Add Bus Details</h2>
+        <div class="signup">
+            <form action="insertbusdetails.php" method="post">
+                <label for="bus_id">Bus ID:</label><br>
+                <input type="text" id="bus_id" name="bus_id" required><br>
+                
+                <label for="bus_number">Bus Number:</label><br>
+                <input type="text" id="bus_number" name="bus_number" required><br>
+                
+                <label for="bus_type">Bus Type:</label><br>
+                <input type="text" id="bus_type" name="bus_type" required><br>
+                
+                <label for="seat_capacity">Seat Capacity:</label><br>
+                <input type="text" id="seat_capacity" name="seat_capacity" required><br>
+                
+                <label for="operator_id">Operator ID:</label><br>
+                <select id="operator_id" name="operator_id" required onchange="fetchOperatorName()">
+                    <option value="">Choose...</option>
+                </select><br>
+                
+                <label for="operator_name">Operator Name:</label><br>
+                <input type="text" id="operator_name" name="operator_name" readonly><br>
+                
+                <input type="submit" id="sub" value="Add">
+            </form>
         </div>
-      </center>
-    </body>
-    </html>
+    </center>
+    <script>
+        $(document).ready(function() {
+            fetchOperators(); // Fetch operators when the page loads
+        });
+
+        function fetchOperators() {
+            $.ajax({
+                url: 'fetch_operators.php',
+                type: 'GET',
+                success: function(response) {
+                    const operators = JSON.parse(response);
+                    operators.forEach(function(operator) {
+                        $('#operator_id').append(new Option(operator.operator_id, operator.operator_id));
+                    });
+                }
+            });
+        }
+
+        function fetchOperatorName() {
+            const operatorId = $('#operator_id').val();
+            if (operatorId) {
+                $.ajax({
+                    url: 'fetch_operator_name.php',
+                    type: 'POST',
+                    data: { operator_id: operatorId },
+                    success: function(response) {
+                        $('#operator_name').val(response);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
