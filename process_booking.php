@@ -1,9 +1,45 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $fullname = $_POST['fullname'];
+    $contact = $_POST['contact'];
+    $Number_of_seats = $_POST['Number_of_seats'];
+    $bus_number = $_POST['bus_number'];
+    $starting_location = $_POST['starting_location'];
+    $destination = $_POST['destination'];
+    $bus_type = $_POST['bus_type'];
+    $Schedule_date = $_POST['Schedule_date'];
+    $departure_time = $_POST['departure_time'];
+    $fare_amount = $_POST['fare_amount'];
+
+
+    $conn = new mysqli('localhost', 'root', '', 'bus_booking_sys');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO booking (fullname, contact, Number_of_seats, bus_number, starting_location, destination, bus_type, Schedule_date, departure_time, fare_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssisssssss", $fullname, $contact, $Number_of_seats, $bus_number, $starting_location, $destination, $bus_type, $Schedule_date, $departure_time, $fare_amount);
+
+    if ($stmt->execute()) {
+        echo "<div class='alert alert-success' role='alert'>Booking confirmed successfully!</div>";
+    } else {
+        echo "<div class='alert alert-danger' role='alert'>Error: " . $stmt->error . "</div>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Seat Selection</title>
+    <title>Booking Confirmation</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -19,11 +55,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
+                   
                     <li class="nav-item">
-                        <a class="nav-link" href="booking.html">Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="contact.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -47,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <p>Not a member? <a href="signup.html">SignUp</a></p>
+                                    <p>Not a member? <a href="signup.php">SignUp</a></p>
                                 </div>
                             </div>
                         </div>
@@ -56,67 +90,39 @@
             </div>
         </div>
     </nav>
-
-    <form class="row g-3 m-4 container justify-content-center" action="booking.php" method="post">
-        <div class="col-md-5">
-            <label for="username" class="form-label">Name</label>
-            <input type="text" class="form-control" id="username">
+    <div class="container-fluid full-height">
+        <div class="row h-100">
+          <div class="col-12 col-md-6 text-black d-flex align-items-center justify-content-center">
+            
+            <button type="button" class="btn btn-primary">
+            <A href="index.html" style="text-decoration: none; color: white;">Homepage</A></button>
+            </button>
+          </div>
+          <div class="col-12 col-md-4 text-white d-flex align-items-center ">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="images/mountaina.png" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="images/seats.png" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="images/bus.png" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+          </div>
         </div>
-        <div class="col-md-5">
-            <label for="contact" class="form-label">Contact</label>
-            <input type="type" class="form-control" id="contact">
-        </div>
-        <div class="col-md-5">
-            <label for="starting_location" class="form-label">From</label>
-            <select id="starting_location" class="form-select">
-                <option selected>Choose...</option>
-                <option value="kathmandu">Kathmandu</option>
-                <option value="pokhara">Pokhara</option>
-                <option value="birgunj">Birgunj</option>
-                <option value="Butwal">Butwal</option>
-                <option value="Hetauda">Hetauda</option>
-                <option value="Jhapa">Jhapa</option>
-                <option value="Janakpur">Janakpur</option>
-                <option value="Biratnagar">Biratnagar</option>
-            </select>
-        </div>
-        <div class="col-md-5">
-            <label for="starting_location" class="form-label">To:</label>
-            <select id="starting_location" class="form-select">
-                <option selected>Choose...</option>
-                <option value="kathmandu">Kathmandu</option>
-                <option value="pokhara">Pokhara</option>
-                <option value="birgunj">Birgunj</option>
-                <option value="Butwal">Butwal</option>
-                <option value="Hetauda">Hetauda</option>
-                <option value="Jhapa">Jhapa</option>
-                <option value="Janakpur">Janakpur</option>
-                <option value="Biratnagar">Biratnagar</option>
-            </select>
-        </div>
-        <div class="col-md-5">
-            <label for="date_of_travel" class="form-label">Date of Travel</label>
-            <input type="date" class="form-control" id="date_of_travel" placeholder="1234 Main St">
-        </div>
-        <div class="col-md-5">
-            <label for="bus_number" class="form-label">Bus Number</label>
-            <input type="text" class="form-control" id="bus_number">
-        </div>
-        <div class="col-md-5">
-            <label for="bus_id" class="form-label">Bus ID</label>
-            <input type="text" class="form-control" id="bus_id">
-        </div>
-        <div class="col-md-5">
-            <label for="Number_of_seats" class="form-label">Number of seats</label>
-            <input type="number" class="form-control" id="Number_of_seats">
-        </div>
-        
-      
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-success">BUY</button>
-        </div>
-    </form>
-
+      </div>
     <hr>
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-body-tertiary text-muted">
@@ -131,28 +137,25 @@
                         <h6 class="text-uppercase fw-bold mb-4">Features</h6>
                         <p><a href="#!" class="text-reset">AC BUS</a></p>
                         <p><a href="#!" class="text-reset">Pricing</a></p>
-                        <p><a href="booking.html" class="text-reset">Booking</a></p>
-                        <p><a href="contact.html" class="text-reset">Contact</a></p>
+                        <p><a href="booking.php" class="text-reset">Booking</a></p>
+                        <p><a href="contact.php" class="text-reset">Contact</a></p>
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                        <p><i class="fas fa-home me-3"></i> Kalimati, Kathmandu, Nepal</p>
-                        <p><i class="fas fa-envelope me-3"></i> info@buses.com</p>
-                        <p><i class="fas fa-phone me-3"></i> + 977 5465455</p>
-                        <p><i class="fas fa-print me-3"></i> + 977 5465456</p>
+                        <p><i class="fas fa-home me-3"></i> Egypt, Minya</p>
+                        <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
                     </div>
                 </div>
             </div>
         </section>
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2024 Copyright:
-            <a class="text-reset fw-bold" href="index.html">BusTech.com</a>
+            © 2023 Copyright:
+            <a class="text-reset fw-bold" href="index.php">BusTech</a>
         </div>
     </footer>
-    <!-- Footer -->
-
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

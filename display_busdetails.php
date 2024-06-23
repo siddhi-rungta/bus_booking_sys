@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 ?>
@@ -6,14 +5,12 @@ session_start();
 <html>
 <head>
   <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-  <title>bus Booking System</title>
+  <title>Bus Booking System</title>
   <meta charset="utf-8">
   <Link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -27,9 +24,7 @@ session_start();
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="booking.html">Booking</a>
-          </li>
+         
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact Us</a>
           </li>
@@ -91,7 +86,14 @@ session_start();
         <td><?php echo htmlspecialchars($row['Schedule_date']); ?></td>
         <td><?php echo htmlspecialchars($row['departure_time']); ?></td>
         <td><?php echo htmlspecialchars($row['fare_amount']); ?></td>
-        <td><a href="booking.html"><button type="button" class="btn btn-danger">BOOK</button></a></td>
+        <td>  <a class="btn btn-primary" href="booking.php?
+                    bus_number=<?php echo urlencode($row['bus_number']); ?>&
+                    starting_location=<?php echo urlencode($row['starting_location']); ?>&
+                    destination=<?php echo urlencode($row['destination']); ?>&
+                    bus_type=<?php echo urlencode($row['bus_type']); ?>&
+                    Schedule_date=<?php echo urlencode($row['Schedule_date']); ?>&
+                    departure_time=<?php echo urlencode($row['departure_time']); ?>&
+                    fare_amount=<?php echo urlencode($row['fare_amount']); ?>">Book</a></td>
       </tr>
       <?php endforeach;
        else: ?>
@@ -118,7 +120,6 @@ session_start();
            Quick and easy bus booking services.
           </p>
         </div>
-
         <!-- Grid column -->
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
@@ -155,7 +156,6 @@ session_start();
     </div>
   </section>
   <!-- Section: Links  -->
-
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2024 Copyright:

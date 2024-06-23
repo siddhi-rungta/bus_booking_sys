@@ -114,7 +114,7 @@ $conn->close();
                                                                                                                                 '<?php echo $row['departure_time']; ?>',
                                                                                                                                 '<?php echo $row['fare_amount']; ?>'
                                                                                                                                 )">Update</a>
-  <a class="btn btn-danger" href="#" role="button" onclick="deleteroute('<?php echo $row['route_id']; ?>')">Delete</a>
+  <a class="btn btn-danger" href="#" role="button" onclick="deleteRoute('<?php echo $row['route_id']; ?>')">Delete</a>
 </td>
 
             </tr>
@@ -129,7 +129,7 @@ $conn->close();
         <br><br>
         
         <br><br><br><br><br><hr>
-    </div>
+    
 
     <!-- Update Modal -->
 <!-- Update Modal -->
@@ -198,15 +198,7 @@ $conn->close();
 <form id="deleteForm" method="post" action="delete_route.php" style="display: none;">
   <input type="hidden" name="route_id" id="delete_route_id">
 </form>
-
-<form id="deleteForm" method="post" action="delete_route.php" style="display: none;">
-  <input type="hidden" name="route_id" id="delete_route_id">
-</form>
-
-<form id="deleteForm" method="post" action="delete_route.php" style="display: none;">
-  <input type="hidden" name="bus_id" id="delete_route_id">
-</form>
-
+</div>
 
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2024 <a class="text-reset fw-bold" href="index.php">BusTech.com</a>
@@ -236,6 +228,12 @@ function updateBusType() {
     document.getElementById('update_Schedule_date').value = Schedule_date;
     document.getElementById('update_departure_time').value = departure_time;
     document.getElementById('update_fare_amount').value = fare_amount;
+}
+function deleteRoute(route_id) {
+  if (confirm("Are you sure you want to delete this route?")) {
+    document.getElementById('delete_route_id').value = route_id;
+    document.getElementById('deleteForm').submit();
+  }
 }
 </script>
 

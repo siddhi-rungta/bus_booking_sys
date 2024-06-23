@@ -189,6 +189,12 @@ function setUpdateModal(bus_id, bus_number, bus_type, seat_capacity, operator_id
   document.getElementById('update_seat_capacity').value = seat_capacity;
   document.getElementById('update_operator_id').value = operator_id;
 }
+function deleteBus(bus_id) {
+  if (confirm("Are you sure you want to delete this Bus?")) {
+    document.getElementById('delete_bus_id').value = bus_id;
+    document.getElementById('deleteForm').submit();
+  }
+}
 </script>
 
     <!-- Bootstrap JS Bundle with Popper -->

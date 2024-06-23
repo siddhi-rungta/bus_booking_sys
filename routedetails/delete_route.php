@@ -15,22 +15,22 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $bus_id = $_POST['route_id'];
+    $route_id = $_POST['route_id'];
 
-    $sql = "DELETE FROM bus WHERE route_id=?";
+    $sql = "DELETE FROM route WHERE route_id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $route_id);
 
     if ($stmt->execute()) {
-        $_SESSION['success'] = "Route deleted successfully!";
+        $_SESSION['success'] = "Bus deleted successfully!";
     } else {
-        $_SESSION['error'] = "Error deleting bus: " . $conn->error;
+        $_SESSION['error'] = "Error deleting route: " . $conn->error;
     }
 
     $stmt->close();
 }
 
 $conn->close();
-header("Location: routedetais.php"); // Redirect to your admin page
+header("Location: routedetails.php"); // Redirect to your admin page
 exit();
 ?>
