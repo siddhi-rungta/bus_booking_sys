@@ -36,16 +36,16 @@ try {
         $bus_type = $_POST['bus_type'];
         $seat_capacity = $_POST['seat_capacity'];
 
-        $sql_bus = "INSERT INTO bus (bus_id, bus_number, bus_type, seat_capacity, operator_id) VALUES (?, ?, ?, ?, ?)";
+        $sql_bus = "INSERT INTO bus ( bus_number, bus_type, seat_capacity, operator_id) VALUES ( ?, ?, ?, ?)";
         $stmt_bus = $conn->prepare($sql_bus);
-        $stmt_bus->bind_param("issii", $bus_id, $bus_number, $bus_type, $seat_capacity, $operator_id);
+        $stmt_bus->bind_param("ssii", $bus_number, $bus_type, $seat_capacity, $operator_id);
         $stmt_bus->execute();
 
         // Commit transaction
         $conn->commit();
         echo "<script>
                 alert('New bus record created successfully for Operator: $operator_name');
-                window.location.href = 'insertbusdetails.html';
+                window.location.href = 'busview.php';
               </script>";
     } else {
         // Operator does not exist

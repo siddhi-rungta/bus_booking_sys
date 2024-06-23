@@ -22,16 +22,16 @@ try {
     $LicenseNumber = $_POST['LicenseNumber'];
     $contact = $_POST['contact'];
     
-    $sql_operator = "INSERT INTO operator (operator_id, operator_name, LicenseNumber, contact) VALUES (?, ?, ?, ?)";
+    $sql_operator = "INSERT INTO operator ( operator_id,operator_name, LicenseNumber, contact) VALUES ( ?,?, ?, ?)";
     $stmt_operator = $conn->prepare($sql_operator);
-    $stmt_operator->bind_param("isss", $operator_id, $operator_name, $LicenseNumber, $contact);
+    $stmt_operator->bind_param("isss",$operator_id, $operator_name, $LicenseNumber, $contact);
     $stmt_operator->execute();
 
     
     $conn->commit();
     echo "<script>
             alert('New records created successfully');
-            window.location.href = 'operatordetails.html';
+            window.location.href = 'operatordisplay.php';
           </script>";
 
 

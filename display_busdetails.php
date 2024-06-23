@@ -1,15 +1,6 @@
 
 <?php 
 session_start();
-
-// // Check if the result set is stored in the session
-// if (isset($_SESSION['result_set'])) {
-//     $result_set = $_SESSION['result_set'];
-//     unset($_SESSION['result_set']); // Clear the session variable after use
-// } else {
-//     echo "No data available.";
-//     exit();
-// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,29 +55,21 @@ session_start();
                         <input class="sign" type="text" id="password" name="password" required><br>
                        <input class="sign" type="submit" id="sub" value="LOGIN"></a>
                   </form>
-          
                 </div>
                 </div>
                 <div class="modal-footer">
                   <p>Not a member? <a href="signup.html">SignUp</a></p>
-                  
                 </div>
               </div>
             </div>
-          </div>
-          
+          </div>      
         </div>
-       
-        
       </div>
     </div>
- 
-    
   </nav>
 <table class="table table-striped table-hover">
     <thead>
       <tr>
-      
         <th scope="col">Bus Number</th>
         <th scope="col">From</th>
         <th scope="col">TO</th>
@@ -101,7 +84,6 @@ session_start();
     <?php  if(isset($_SESSION['data']) && is_array($_SESSION['data'])):
             foreach ($_SESSION['data'] as $row): ?>
       <tr>
-      
         <td><?php echo htmlspecialchars($row['bus_number']); ?></td>
         <td><?php echo htmlspecialchars($row['starting_location']); ?></td>
         <td><?php echo htmlspecialchars($row['destination']); ?></td>

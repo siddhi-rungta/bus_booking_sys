@@ -59,7 +59,7 @@ try {
     $conn->commit();
     echo "<script>
             alert('New records successfully created for\\nBus Number: $bus_number\\nBus Type: $bus_type\\nOperator Name: $operator_name');
-            window.location.href = 'routedetails.html';
+            window.location.href = 'routedetails.php';
           </script>";
 
 } catch (Exception $e) {
