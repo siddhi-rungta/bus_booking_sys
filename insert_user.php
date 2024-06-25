@@ -38,7 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "New record created successfully";
+        echo "<script>
+            alert('New records created successfully');
+            window.location.href = 'index1.html';
+          </script>";
     } else {
         echo "Error: " . $stmt->error;
     }

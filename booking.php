@@ -20,40 +20,14 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index1.html">Home</a>
                     </li>
                 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="contactform.php">Contact Us</a>
                     </li>
                 </ul>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">LOGIN</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="signup">
-                                        <form action="login.php" method="post">
-                                            <label for="username">User Name:</label><br>
-                                            <input class="sign" type="text" id="username" name="username" required><br>
-                                            <label for="password">Password:</label><br>
-                                            <input class="sign" type="text" id="password" name="password" required><br>
-                                            <input class="sign" type="submit" id="sub" value="LOGIN">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Not a member? <a href="signup.php">SignUp</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+           
             </div>
         </div>
     </nav>
@@ -85,11 +59,11 @@ session_start();
               </div>
               <div class="col-md-6">
                 <label for="destination" class="form-label">To</label>
-                <input type="text" class="form-control" id="destination" name="destination" value="<?php echo htmlspecialchars($_GET['destination']); ?>" readonly>
+                <input type="text" class="form-control" id="destination" name="destination" value="<?php echo htmlspecialchars($_GET['destination']); ?>" >
               </div>
               <div class="col-md-6">
                 <label for="bus_type" class="form-label">Bus Type</label>
-                <input type="text" class="form-control" id="bus_type" name="bus_type" value="<?php echo htmlspecialchars($_GET['bus_type']); ?>" readonly>
+                <input type="text" class="form-control" id="bus_type" name="bus_type" value="<?php echo htmlspecialchars($_GET['bus_type']); ?>" >
               </div>
               <div class="col-md-6">
                 <label for="Schedule_date" class="form-label">Schedule date</label>
@@ -113,17 +87,17 @@ session_start();
               <button type="submit" class="btn btn-primary">Confirm Booking</button>
           </form>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
                 <div id="carouselExampleAutoplaying" class="carousel slide mb-4" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="images/mountaina.png" class="d-block w-100" alt="...">
+                            <img src="images/outside.png" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/seats.png" class="d-block w-100" alt="...">
+                            <img src="images/book.png" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="images/bus.png" class="d-block w-100" alt="...">
+                            <img src="images/businside.png" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

@@ -12,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Schedule_date = $_POST['Schedule_date'];
     $departure_time = $_POST['departure_time'];
     $fare_amount = $_POST['fare_amount'];
-
-
     $conn = new mysqli('localhost', 'root', '', 'bus_booking_sys');
 
     if ($conn->connect_error) {
@@ -25,7 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ssisssssss", $fullname, $contact, $Number_of_seats, $bus_number, $starting_location, $destination, $bus_type, $Schedule_date, $departure_time, $fare_amount);
 
     if ($stmt->execute()) {
-        echo "<div class='alert alert-success' role='alert'>Booking confirmed successfully!</div>";
+        echo "<script><div class='alert alert-success' role='alert'>Booking confirmed successfully!</div>
+        
+        window.location.href = 'contactform.php';
+      </script>";
     } else {
         echo "<div class='alert alert-danger' role='alert'>Error: " . $stmt->error . "</div>";
     }
@@ -53,73 +54,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index1.html">Home</a>
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact Us</a>
+                        <a class="nav-link" href="contactform.php">Contact Us</a>
                     </li>
                 </ul>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">LOGIN</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="signup">
-                                        <form action="login.php" method="post">
-                                            <label for="username">User Name:</label><br>
-                                            <input class="sign" type="text" id="username" name="username" required><br>
-                                            <label for="password">Password:</label><br>
-                                            <input class="sign" type="text" id="password" name="password" required><br>
-                                            <input class="sign" type="submit" id="sub" value="LOGIN">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Not a member? <a href="signup.php">SignUp</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </nav>
     <div class="container-fluid full-height">
         <div class="row h-100">
           <div class="col-12 col-md-6 text-black d-flex align-items-center justify-content-center">
-            
+          <div class="col-12 col-md-6 text-black d-flex align-items-center justify-content-center">
+            <div>
+                <h2>Booking Confirmed</h2>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Full Name:</strong> <?php echo htmlspecialchars($fullname); ?></li>
+                    <li class="list-group-item"><strong>Contact:</strong> <?php echo htmlspecialchars($contact); ?></li>
+                    <li class="list-group-item"><strong>Number of Seats:</strong> <?php echo htmlspecialchars($Number_of_seats); ?></li>
+                    <li class="list-group-item"><strong>Bus Number:</strong> <?php echo htmlspecialchars($bus_number); ?></li>
+                    <li class="list-group-item"><strong>From:</strong> <?php echo htmlspecialchars($starting_location); ?></li>
+                    <li class="list-group-item"><strong>To:</strong> <?php echo htmlspecialchars($destination); ?></li>
+                    <li class="list-group-item"><strong>Bus Type:</strong> <?php echo htmlspecialchars($bus_type); ?></li>
+                    <li class="list-group-item"><strong>Schedule Date:</strong> <?php echo htmlspecialchars($Schedule_date); ?></li>
+                    <li class="list-group-item"><strong>Departure Time:</strong> <?php echo htmlspecialchars($departure_time); ?></li>
+                    <li class="list-group-item"><strong>Total Fare:</strong> $<?php echo htmlspecialchars($fare_amount); ?></li>
+                </ul>
+            </div>
+          </div>
             <button type="button" class="btn btn-primary">
+                
             <A href="index.html" style="text-decoration: none; color: white;">Homepage</A></button>
             </button>
           </div>
-          <div class="col-12 col-md-4 text-white d-flex align-items-center ">
-            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="images/mountaina.png" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/seats.png" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/bus.png" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+          <div class="col-12 col-md-6 text-white d-flex align-items-center ">
+          <div id="carouselExampleAutoplaying" class="carousel slide mb-4" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="images/outside.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/book.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/businside.png" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div> 
           </div>
         </div>
       </div>

@@ -56,13 +56,13 @@ $conn->close();
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index1.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="booking.html">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="contactform.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
